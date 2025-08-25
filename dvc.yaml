@@ -1,15 +1,24 @@
 stages:
-preprocess:
-cmd: python src/data_preprocess.py
-deps:
-- data/sales.csv
-- src/data_preprocess.py
-outs:
-- data/sales_clean.csv
-train:
-cmd: python src/train.py
-deps:
-- data/sales_clean.csv
-- src/train.py
-outs:
-- model.pkl
+  preprocess:
+    cmd: python src/preprocess.py data/sales.csv data/processed_sales.csv
+    deps:
+      - src/preprocess.py
+      - data/sales.csv
+    outs:
+      - data/processed_sales.csv
+
+  train:
+    cmd: python src/train.py data/processed_sales.csv model.pkl
+    deps:
+      - src/train.py
+      - data/processed_sales.csv
+    outs:
+      - model.pkl
+
+  evaluate:
+    cmd: python src/evaluate.py model.pkl
+    deps:
+      - src/evaluate.py
+      - model.pkl
+    outs:
+      - metrics.json
