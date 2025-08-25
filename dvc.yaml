@@ -16,9 +16,13 @@ stages:
       - model.pkl
 
   evaluate:
-    cmd: python src/evaluate.py model.pkl
+    cmd: python src/evaluate.py model.pkl data/processed_sales.csv metrics.txt
     deps:
       - src/evaluate.py
       - model.pkl
+      - data/processed_sales.csv
     outs:
-      - metrics.json
+      - metrics.txt
+
+
+  
