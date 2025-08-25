@@ -1,8 +1,8 @@
 stages:
   preprocess:
-    cmd: python src/preprocess.py data/sales.csv data/processed_sales.csv
+    cmd: python src/pre_process.py data/sales.csv data/processed_sales.csv
     deps:
-      - src/preprocess.py
+      - src/pre_process.py
       - data/sales.csv
     outs:
       - data/processed_sales.csv
