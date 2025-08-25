@@ -1,0 +1,15 @@
+stages:
+preprocess:
+cmd: python src/data_preprocess.py
+deps:
+- data/sales.csv
+- src/data_preprocess.py
+outs:
+- data/sales_clean.csv
+train:
+cmd: python src/train.py
+deps:
+- data/sales_clean.csv
+- src/train.py
+outs:
+- model.pkl
